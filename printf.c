@@ -38,7 +38,7 @@ int _printf(const char *format, ...)
 	va_list ag;
 	char c;
 	char *s;
-    int i;
+    int n;
 	int sum = 0;
 
 	va_start(ag, format);
@@ -76,13 +76,20 @@ int _printf(const char *format, ...)
 					sum++;
 				}
 					break;
-                    case 'd':
+                    		case 'd':
 				{
-					i = va_arg(ag, int);
-                    k_putint(i);
+					n = va_arg(ag, int);
+                    k_putint(n);
 					sum++;
 				}
 					break;
+				case 'i':
+                                {
+                                        n = va_arg(ag, int);
+                    k_putint(n);
+                                        sum++;
+                                }
+                                        break;
 				default:
 				{
 					k_putchar('%');
