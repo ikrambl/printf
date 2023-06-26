@@ -1,7 +1,4 @@
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "main.h"
 void k_putchar(int c)
 {
     write(1, &c, 1);
