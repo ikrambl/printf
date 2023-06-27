@@ -35,8 +35,12 @@ int _printf(const char *format, ...)
 				case 's':
 				{
 					s = va_arg(ag, char*);
-					k_putstr(s);
-					sum++;
+					while (*s)
+					{
+						k_putchar(*s);
+						s++;
+						sum++;
+					}
 				}
 					break;
 				case '%':
