@@ -36,6 +36,7 @@ int _printf(const char *format, ...)
 				{
 					s = va_arg(ag, char*);
 					k_putstr(s);
+					sum++;
 				}
 					break;
 				case '%':
