@@ -50,14 +50,12 @@ int _printf(const char *format, ...)
 					sum += k_putchar('-');
 					n = -n;
 				}
-				tmp= n;
+				tmp = n;
 				dgts = 0;
-					do
-					{
+					do {
 						dgts++;
 						tmp /= 10;
-					}
-					while (tmp != 0);
+					} while (tmp != 0);
 					div = 1;
 					for (count = 1; count < dgts; count++)
 					{
@@ -66,7 +64,7 @@ int _printf(const char *format, ...)
 					while (div != '0')
 					{
 						int digit = n / div;
-						
+
 						sum += k_putchar('0' + digit);
 						n %= div;
 						div /= 10;
