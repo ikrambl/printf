@@ -4,9 +4,9 @@
 /**
  * k_putchar - print a char at a time
  * @c: char to be printed
- * no return void func
+ * return: char
  */
-void k_putchar(int c)
+int k_putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }

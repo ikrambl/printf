@@ -5,9 +5,10 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void k_putchar(int c);
+int k_putchar(char c);
 void k_putint(int n);
 void k_putstr(char *str);
 int _printf(const char *format, ...);
+int _putchar(char c);
 
 #endif

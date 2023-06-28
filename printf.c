@@ -13,6 +13,10 @@ int _printf(const char *format, ...)
 	char *s;
 	int n;
 	int sum = 0;
+	int tmp;
+	int div;
+	int dgts;
+	int count;
 
 	va_start(ag, format);
 
@@ -20,66 +24,66 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			{
-				format++;
-			}
+			format++;
 			switch (*format)
 			{
 				case 'c':
-				{
 					c = (char)va_arg(ag, int);
-					k_putchar(c);
-					sum++;
-				}
+					sum += k_putchar(c);
 					break;
 				case 's':
-				{
 					s = va_arg(ag, char*);
 					while (*s)
 					{
-						k_putchar(*s);
+						sum += k_putchar(*s);
 						s++;
-						sum++;
 					}
-				}
 					break;
 				case '%':
-				{
-					k_putchar('%');
-					sum++;
-				}
-					break;
-				case 'd':
-				{
-					n = va_arg(ag, int);
-					k_putint(n);
-					sum++;
-				}
-					break;
-				case 'i':
-				{
-					n = va_arg(ag, int);
-					k_putint(n);
-					sum++;
-				}
+					sum += k_putchar('%');
 				break;
-				default:
+				case 'd':
+				case 'i':
+				n = va_arg(ag, int);
+				if (n < 0)
 				{
-					k_putchar('%');
-					k_putchar(*format);
-					sum += 2;
+					sum += k_putchar('-');
+					n = -n;
 				}
+				tmp= n;
+				dgts = 0;
+					do
+					{
+						dgts++;
+						tmp /= 10;
+					}
+					while (tmp != 0);
+					div = 1;
+					for (count = 1; count < dgts; count++)
+					{
+						div *= 10;
+					}
+					while (div != '0')
+					{
+						int digit = n / div;
+						
+						sum += k_putchar('0' + digit);
+						n %= div;
+						div /= 10;
+					}
+					break;
+				default:
+					sum += k_putchar('%');
+					sum += k_putchar(*format);
 					break;
 			}
 		}
-		else
-		{
-			k_putchar(*format);
-			sum++;
-		}
-		format++;
+			else
+			{
+				sum += k_putchar(*format);
+			}
+			format++;
 	}
-	va_end(ag);
-
-	return (sum);
+		va_end(ag);
+		return (sum);
 }
